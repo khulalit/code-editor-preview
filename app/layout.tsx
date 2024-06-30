@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import HeaderLayout from "@/components/Layouts/Header";
+import MainArea from "@/components/Layouts/MainArea";
+
+import HeaderComponent from "@/components/HeaderComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={inter.className + " bg--400 h-screen"}
+        suppressHydrationWarning
+      >
+        <div className="h-full flex flex-col">
+          <HeaderLayout>
+            <HeaderComponent />
+          </HeaderLayout>
+          <MainArea>{children}</MainArea>
+          {/* <FooterLayout></FooterLayout> */}
+        </div>
+      </body>
     </html>
   );
 }
